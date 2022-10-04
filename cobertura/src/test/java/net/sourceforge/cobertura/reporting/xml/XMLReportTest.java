@@ -29,6 +29,7 @@ import net.sourceforge.cobertura.reporting.JUnitXMLHelper;
 import net.sourceforge.cobertura.util.FileFinder;
 
 import java.io.File;
+import java.nio.file.Files;
 
 public class XMLReportTest extends TestCase {
 
@@ -58,9 +59,7 @@ public class XMLReportTest extends TestCase {
 				.getName());
 		cd.touch(7777, 1);
 
-		File reportDir = File.createTempFile("XMLReportTest", "");
-		reportDir.delete();
-		reportDir.mkdir();
+		File reportDir = Files.createTempDirectory("XMLReportTest").toFile();
 
 		FileFinder fileFinder = new FileFinder();
 		ComplexityCalculator complexity = new ComplexityCalculator(fileFinder);
